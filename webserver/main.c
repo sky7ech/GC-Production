@@ -35,12 +35,7 @@ int main (void)
 				perror("eciture");
 				return 0;
 			}
-			if(strncmp(c,"exit",4) == 0){
-				close(socket_client);
-				return 0;
-			}
-			write(socket_client,c,ecrit);
-			
+		write(socket_client,c,ecrit);	
 		}
 		if (pid != 0) {
 			close(socket_client);
