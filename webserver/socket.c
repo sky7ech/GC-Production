@@ -1,8 +1,11 @@
 #include "socket.h"
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdio.h>
 #include <arpa/inet.h>
+#include <sys/wait.h>
+
 
 int creer_serveur(int port){
 
@@ -22,14 +25,11 @@ int creer_serveur(int port){
 	saddr.sin_family = AF_INET; /* Socket ipv4 */
 	saddr.sin_port = htons(port); /* Port d’écoute */
 	saddr.sin_addr.s_addr = INADDR_ANY; /* écoute sur toutes les interfaces */
-	
 	if ( bind (socket_serveur,(struct sockaddr *)& saddr,sizeof(saddr))== -1)
 	{
 		perror("bind socker_serveur");
 		/* traitement de l’erreur */
 	}
-	
-	
 	if (listen(socket_serveur,10)==-1)
 	{
 		perror ("listen socket_serveur");
@@ -38,3 +38,22 @@ int creer_serveur(int port){
 	}
 	return socket_serveur;
 }
+
+
+void initialiser_signaux (void) {
+	if (signal(SIGPIPE,SIG_IGN) == SIG_ERR) {
+		perror ("signal");
+	}
+	/*struct sigaction sa;
+	sa.sa_handler = traitement_signal;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+		if(sigaction (SIGCHLD , &sa , NULL) == -1){
+			perror ("sigaction(SIGCHLD)");
+		}*/
+}
+
+/*void traitement_signal (int sig){
+	printf ("Signal %d reçu \n" , sig);
+}*/
+
