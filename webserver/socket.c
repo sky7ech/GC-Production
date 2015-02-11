@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 #include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 int creer_serveur(int port){

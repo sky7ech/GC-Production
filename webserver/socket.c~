@@ -34,7 +34,7 @@ int creer_serveur(int port){
 	{
 		perror ("listen socket_serveur");
 		return -1;
-		/* traitement d ’ erreur */
+		/* traitement d’erreur */
 	}
 	return socket_serveur;
 }

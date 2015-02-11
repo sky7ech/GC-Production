@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include<stdlib.h>
 #include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 int main (void)
@@ -15,6 +17,8 @@ int main (void)
     char c[50];
     int ecrit;
     int socket_client ;
+	char words[50];
+	FILE *fp;
     
 	while (1) {
 		socket_client = accept(socket_serveur , NULL , NULL );
@@ -39,7 +43,35 @@ int main (void)
 			if(ecrit == 0 ){
 				return 0;
 			}
-			write(socket_client,c,ecrit);	
+			//write(socket_client,c,ecrit);	
+
+			while(1) {
+				
+		
+				if ((fp = fopen("mots", "w+")) == NULL) {
+		    		fprintf(stdout,"Problème fichier \"mots\".\n");
+		   			exit(1);
+	   			 }
+
+				//if (fp = fopen("mots", "w") > 0) 
+ 
+				
+				puts("<pawnee>");
+				while (gets(words) != NULL  && words[0] != '\0') {
+		    		fprintf(fp, "%s ", words);
+				}
+				rewind(fp);  /* retour au début du fichier */
+				while (fscanf(fp,"%s",words) > 0) {
+		    		puts(words);
+					puts("CLEMENT <3");
+				}
+
+	  			if (fclose(fp) != 0) {
+		    		fprintf(stderr,"Erreur fermeture fichier\n");
+				}
+
+			}
+
 		}
 	}	
 	close(socket_client);
