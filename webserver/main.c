@@ -44,8 +44,8 @@ int main (void)
 		}
 		if (pid != 0) {
 			close(socket_client);
-		}
-		}
+				}
+			}
 		}
 		close(socket_serveur);
 	return 0;
