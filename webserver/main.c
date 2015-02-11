@@ -11,19 +11,20 @@
 int main (void)
 {
     int socket_serveur = creer_serveur(8000);
-	initialiser_signaux();
-    	char c[50];
-    	int ecrit;
-    	int socket_client ;
-    	printf("Ca marche");
-		while (1) {
+	
+    char c[50];
+    int ecrit;
+    int socket_client ;
+    
+	while (1) {
 		socket_client = accept(socket_serveur , NULL , NULL );
+		traitement_signal(socket_client);
 		int pid = fork();
-		if(socket_client == -1)
-		{
+		if(socket_client == -1){
 			perror("accept");
 			/* traitement d ’ erreur */
 		}
+		initialiser_signaux();
 		/* On peut maintenant dialoguer avec le client */
 		sleep(1);
 		if (pid == 0) {
@@ -35,15 +36,15 @@ int main (void)
 				perror("eciture");
 				return 0;
 			}
-		write(socket_client,c,ecrit);	
-		}
-		if (pid != 0) {
-			close(socket_client);
-				}
+			if(ecrit == 0 ){
+				return 0;
 			}
+			write(socket_client,c,ecrit);	
 		}
-		close(socket_serveur);
+	}	
+	close(socket_client);
+	}
 	return 0;
-		
+	
 }
 
