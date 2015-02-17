@@ -40,12 +40,12 @@ int main (void)
 	   			 }
 				puts("<pawnee>\n");
 				while (fgets(words,50,fp) != NULL  && words[0] != '\0') {
-		    		fprintf(fp, "%s", words);
+					printf(words); 
+		    		//fprintf(fp, "%s", words);
 				}
 				rewind(fp);  /* retour au début du fichier */
 				while (fscanf(fp,"%s",words) > 0) {
 		    		puts(words);
-					puts("CLEMENT <3");
 				}
 
 	  			if (fclose(fp) != 0) {
