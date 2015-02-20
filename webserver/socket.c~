@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 #include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 int creer_serveur(int port){
@@ -57,5 +59,38 @@ void initialiser_signaux (void) {
 		perror ("signal");
 	}
 }
+
+
+int compterMot(char* buffer){
+	int i = 0;
+	int cpt = 0;
+	while(buffer[i] != '\0'){
+		if(buffer[i] == ' '){
+			i++;
+		}
+		else {
+			cpt ++;
+			i++;
+			while (buffer[i] != ' '){
+				i++;
+			}
+		}
+	}
+	return cpt;	
+}
+
+int verifGET(char* buffer){
+	if (buffer[0] =='G' && buffer[1] =='E' && buffer[2] == 'T'){
+		return 0;
+	}
+	return -1;
+}
+
+int verif(char* buffer){
+	if (verifGET(buffer)== 0 && (compterMot(buffer)==3)){
+		return 0;
+	}
+	return -1;
+	}
 
 

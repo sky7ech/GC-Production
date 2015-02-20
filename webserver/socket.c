@@ -61,3 +61,36 @@ void initialiser_signaux (void) {
 }
 
 
+int compterMot(char* buffer){
+	int i = 0;
+	int cpt = 0;
+	while(buffer[i] != '\0'){
+		if(buffer[i] == ' '){
+			i++;
+		}
+		else {
+			cpt ++;
+			i++;
+			while (buffer[i] != ' ' && buffer[i] !='\0'){
+				i++;
+			}
+		}
+	}
+	return cpt;	
+}
+
+int verifGET(char* buffer){
+	if (buffer[0] =='G' && buffer[1] =='E' && buffer[2] == 'T'){
+		return 0;
+	}
+	return -1;
+}
+
+int verif(char* buffer){
+	if (verifGET(buffer)== 0 && (compterMot(buffer)==3)){
+		return 0;
+	}
+	return -1;
+	}
+
+

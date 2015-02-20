@@ -40,14 +40,15 @@ int main (void)
 	   			 }
 				puts("<pawnee>\n");
 				while (fgets(words,50,fp) != NULL  && words[0] != '\0') {
-					printf(words); 
-		    		//fprintf(fp, "%s", words);
+						if(verifGET(words) ==0 && compterMot(words) == 3){
+							puts(words); 
+						}
+		    			//fprintf(fp, "%s", words);
 				}
 				rewind(fp);  /* retour au début du fichier */
 				while (fscanf(fp,"%s",words) > 0) {
 		    		puts(words);
-				}
-
+		    	}
 	  			if (fclose(fp) != 0) {
 		    		fprintf(stderr,"Erreur fermeture fichier\n");
 				}
@@ -58,6 +59,6 @@ int main (void)
 	close(socket_client);
 	}
 	return 0;
-	
 }
+
 
