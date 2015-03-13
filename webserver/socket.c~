@@ -71,7 +71,7 @@ int compterMot(char* buffer){
 		else {
 			cpt ++;
 			i++;
-			while (buffer[i] != ' '){
+			while (buffer[i] != ' ' && buffer[i] !='\0'){
 				i++;
 			}
 		}
@@ -92,5 +92,7 @@ int verif(char* buffer){
 	}
 	return -1;
 	}
+
+
 
 
