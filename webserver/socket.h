@@ -13,4 +13,8 @@ void traitement_signal (int sig);
 int verif(char* buffer);
 int verifGET(char* buffer);
 int compterMot(char* buffer);
+int verifHTTP(char * buffer,int entierdeb);
+int ignorerLigne(char * buffer);
+void afficherBienvenue(int socket_client);
+void afficherErreur400(int socket_client);
 #endif
